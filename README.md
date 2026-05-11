@@ -1,7 +1,7 @@
 # Azure Hub-and-Spoke Network Topology
 
 ## Architecture Diagram
-![Architecture Diagram](diagram.png)
+![Architecture Diagram](Architecture-diagram.png)
 
 ## What This Builds
 This project deploys a hub-and-spoke network topology on Azure using Terraform.
