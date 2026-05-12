@@ -12,8 +12,6 @@ resource "azurerm_virtual_network_peering" "spoke1_peering2" {
   resource_group_name       = var.resource_group_name
   virtual_network_name      = var.spoke1_vnet_name
   remote_virtual_network_id = var.hub_vnet_id
-  use_remote_gateways = true
-  depends_on          = [module.gateway]
 }
 
 //Spoke2
@@ -30,6 +28,4 @@ resource "azurerm_virtual_network_peering" "spoke2_peering2" {
   resource_group_name       = var.resource_group_name
   virtual_network_name      = var.spoke2_vnet_name
   remote_virtual_network_id = var.hub_vnet_id
-  use_remote_gateways = true
-  depends_on          = [module.gateway]
 }
