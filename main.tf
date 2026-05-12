@@ -156,3 +156,24 @@ resource "azurerm_subnet_route_table_association" "spoke2_snet_data" {
   route_table_id = azurerm_route_table.route_table.id
 }
 */
+
+module "gateway" {
+  source = "./modules/gateway"
+
+  resource_group_name      = azurerm_resource_group.rg.name
+  resource_group_location  = azurerm_resource_group.rg.location
+  hub_gateway_subnet_id    = azurerm_subnet.hub_gateway_subnet.id
+  onprem_gateway_subnet_id = azurerm_subnet.onprem_gateway_subnet.id
+}
+
+module "peering" {
+  source = "./modules/peering"
+
+  resource_group_name = azurerm_resource_group.rg.name
+  hub_vnet_name       = azurerm_virtual_network.hub.name
+  hub_vnet_id         = azurerm_virtual_network.hub.id
+  spoke1_vnet_name    = azurerm_virtual_network.spoke1.name
+  spoke1_vnet_id      = azurerm_virtual_network.spoke1.id
+  spoke2_vnet_name    = azurerm_virtual_network.spoke2.name
+  spoke2_vnet_id      = azurerm_virtual_network.spoke2.id
+}
