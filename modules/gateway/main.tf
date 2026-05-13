@@ -6,6 +6,7 @@ resource "azurerm_public_ip" "hub_gw_pip" {
 
   allocation_method = "Static"
   sku = "Standard"
+  zones               = ["1", "2", "3"]
 }
 
 resource "azurerm_virtual_network_gateway" "hub_gw" {
@@ -17,7 +18,7 @@ resource "azurerm_virtual_network_gateway" "hub_gw" {
   vpn_type = "RouteBased"
 
   active_active = false
-  sku           = "VpnGw1"
+  sku           = "VpnGw1AZ"
 
   ip_configuration {
     name                          = "vnetGatewayConfig"
@@ -39,6 +40,7 @@ resource "azurerm_public_ip" "onprem_gw_pip" {
 
   allocation_method = "Static"
   sku = "Standard"
+  zones               = ["1", "2", "3"]
 }
 
 resource "azurerm_virtual_network_gateway" "onprem_gw" {
@@ -50,7 +52,7 @@ resource "azurerm_virtual_network_gateway" "onprem_gw" {
   vpn_type = "RouteBased"
 
   active_active = false
-  sku           = "VpnGw1"
+  sku           = "VpnGw1AZ"
 
   ip_configuration {
     name                          = "vnetGatewayConfig"
